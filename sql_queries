@@ -1,0 +1,7 @@
+.mode box
+
+-- DB's tables:
+.tables
+SELECT name FROM sqlite_master WHERE type='table';
+SELECT * FROM albums;
+SELECT * FROM albums ORDER BY tittle DESC;
