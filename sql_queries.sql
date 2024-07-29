@@ -88,13 +88,47 @@ WHERE
 ORDER BY
 	InvoiceDate;
 --*****************************************************************************
-
+SELECT
+	InvoiceDate, BillingAddress, BillingCity, Total 
+FROM
+	invoices
+WHERE
+	DATE(InvoiceDate) > '2013-01-01' AND Total < 3 
+ORDER BY 
+	Total;
 --*****************************************************************************
-
+SELECT
+	InvoiceDate, BillingAddress, BillingCity, Total 
+FROM
+	invoices
+WHERE
+	BillingCity LIKE 'P%' AND Total > 2
+ORDER BY 
+	Total;
 --*****************************************************************************
-
+SELECT
+	InvoiceDate, BillingAddress, BillingCity, Total 
+FROM 
+	invoices
+WHERE 
+	BillingCity LIKE 'P%' OR BillingCity LIKE 'D%'
+ORDER BY 
+	Total;
 --*****************************************************************************
-
+SELECT 
+	InvoiceDate, BillingAddress, BillingCity, Total,
+CASE 
+	WHEN Total < 2.00 Then 'A' 
+	WHEN Total BETWEEN 2.00 AND 6.99 THEN 'B'
+	WHEN Total BETWEEN 7.00 AND 15.00 THEN 'C'
+	ELSE 'D'
+END AS PurchaseType
+FROM
+	invoices
+WHERE
+	PurchaseType = 'B'
+ORDER BY
+	BillingCity;
 --*****************************************************************************
 
 --*****************************************************************************
